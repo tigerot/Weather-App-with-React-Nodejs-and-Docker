@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+    thenodejs:
+      image: nodejs
+      ports:
+        - "5000:5000"
+      volumes:
+        - ./NodeBackEnd:/app
+
+    thereact:
+      stdin_open: true
+      image: react
+      build: "reactfrontend/"
+      ports:
+        - "3000:3000"
+      volumes:
+        - ./reactfrontend:/app
+      depends_on:
+        - thenodejs
